@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from rest_framework import viewsets
+from .serializer import AlunoSerializer
 
-from Academia.models import Aulas
+from Academia.models import Aulas, Aluno
 # Create your views here.
 
 def listaClientes(request):
@@ -15,3 +17,7 @@ def listaClientes(request):
     html += "</body></html>"
 
     return HttpResponse(html)
+
+class AlunoViewSet(viewsets.ModelViewSet):
+    queryset = Aluno.objects.all()
+    serializer_class = AlunoSerializer

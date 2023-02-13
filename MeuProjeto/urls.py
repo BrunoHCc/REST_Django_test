@@ -15,8 +15,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from Academia.views import AlunoViewSet
+from rest_framework import routers
+
+router = routers.DefaultRouter()
+router.register(r'Aluno', AlunoViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('Academia/', include('Academia.urls')),
+
+    #url do rest
+    path('api-auth/', include('rest_framework.urls')),
+
+    path('', include(router.urls)),
 ]
